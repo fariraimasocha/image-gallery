@@ -4,38 +4,9 @@ import Link from "next/link";
 import { Star } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { technologies, technologyLinks } from "@/utils/technologies";
 
 export default function Hero() {
-  const technologies = [
-    {
-      src: "/technologies/stripe-blue.png",
-      alt: "Stripe",
-      width: 100,
-      height: 40,
-    },
-    { src: "/technologies/next.svg", alt: "Next.js", width: 80, height: 40 },
-    {
-      src: "/technologies/tailwindcss.svg",
-      alt: "Tailwind CSS",
-      width: 40,
-      height: 40,
-    },
-    { src: "/technologies/resend.svg", alt: "Resend", width: 100, height: 40 },
-    {
-      src: "/technologies/zustand-mascot.svg",
-      alt: "Zustand",
-      width: 40,
-      height: 40,
-    },
-    {
-      src: "/technologies/uploadthing.svg",
-      alt: "Upload Thing",
-      width: 100,
-      height: 40,
-    },
-    { src: "/technologies/mongo.svg", alt: "MongoDB", width: 100, height: 40 },
-  ];
-
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
@@ -68,59 +39,23 @@ export default function Hero() {
         </div>
         <div className="max-w-md mx-auto text-sm text-gray-500 mt-6">
           Built with{" "}
-          <Link
-            href="https://stripe.com"
-            className="underline hover:text-gray-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Stripe
-          </Link>
-          ,{" "}
-          <Link
-            href="https://nextjs.org"
-            className="underline hover:text-gray-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Next.js
-          </Link>
-          ,{" "}
-          <Link
-            href="https://tailwindcss.com"
-            className="underline hover:text-gray-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Tailwind CSS
-          </Link>
-          ,{" "}
-          <Link
-            href="https://resend.com"
-            className="underline hover:text-gray-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Resend
-          </Link>
-          ,{" "}
-          <Link
-            href="https://github.com/pmndrs/zustand"
-            className="underline hover:text-gray-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Zustand
-          </Link>
-          , and{" "}
-          <Link
-            href="https://uploadthing.com"
-            className="underline hover:text-gray-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Upload Thing
-          </Link>
+          {technologyLinks.map((tech, index) => (
+            <React.Fragment key={tech.name}>
+              <Link
+                href={tech.href}
+                className="underline hover:text-gray-700 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {tech.name}
+              </Link>
+              {index < technologyLinks.length - 2
+                ? ", "
+                : index === technologyLinks.length - 2
+                ? ", and "
+                : ""}
+            </React.Fragment>
+          ))}
         </div>
         <div className="flex justify-center items-center gap-8 mt-8 flex-wrap">
           {technologies.map((tech) => (
