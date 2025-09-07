@@ -1,6 +1,8 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "@/components/providers/auth-provider";
+import QueryProvider from "@/components/providers/query-provider";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -16,7 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
-        {children}
+        <AuthProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </AuthProvider>
         <Toaster />
       </body>
     </html>
